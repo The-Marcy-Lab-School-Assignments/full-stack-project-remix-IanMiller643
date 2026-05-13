@@ -1,6 +1,6 @@
-# Todo App — Full-Stack Case Study
+# Flashcard Study App — Full-Stack Case Study
 
-A full-stack Todo app built with React, Express, and Postgres. Demonstrates session-based authentication, session rehydration, auth-dependent data fetching, and conditional rendering — the same patterns students use in their full-stack projects.
+A full-stack Flashcard Study app built with React, Express, and Postgres. Demonstrates session-based authentication, session rehydration, auth-dependent data fetching, and conditional rendering — the same patterns students use in their full-stack projects.
 
 ## User Stories
 
@@ -10,11 +10,12 @@ A full-stack Todo app built with React, Express, and Postgres. Demonstrates sess
 - A user can log out
 - A returning user who has an active session is automatically logged in when they revisit the app
 
-**Todos**
-- A logged-in user can see all of their todos
-- A logged-in user can create a new todo by entering a title
-- A logged-in user can mark a todo as complete or incomplete
-- A logged-in user can delete a todo
+**Decks & Cards**
+- A logged-in user can create a new deck (toggling it as public or private)
+- A logged-in user can see a list of all decks they own
+- A logged-in user can add, edit, or delete cards within their own decks
+- Any user can view decks marked as public
+- A logged-in user can only edit or delete decks that they specifically own
 
 ## Schema
 
@@ -25,15 +26,23 @@ user_id       SERIAL PRIMARY KEY
 username      TEXT UNIQUE NOT NULL
 password_hash TEXT NOT NULL
 
-todos
+decks
 ─────────────────────────────
-todo_id     SERIAL PRIMARY KEY
+deck_id     SERIAL PRIMARY KEY
 title       TEXT NOT NULL
-is_complete BOOLEAN DEFAULT FALSE
+description TEXT
+is_public   BOOLEAN DEFAULT FALSE
 user_id     INTEGER REFERENCES users(user_id) ON DELETE CASCADE
+
+cards
+─────────────────────────────
+card_id     SERIAL PRIMARY KEY
+front       TEXT NOT NULL
+back        TEXT NOT NULL
+deck_id     INTEGER REFERENCES decks(deck_id) ON DELETE CASCADE
 ```
 
-A user has many todos. Deleting a user cascades to delete all of their todos.
+A user has many decks. A deck has many cards. Deleting a user deletes their decks; deleting a deck deletes its cards.
 
 ## API Contract
 
@@ -46,14 +55,28 @@ A user has many todos. Deleting a user cascades to delete all of their todos.
 | DELETE | `/api/auth/logout`   | —                        | `{ message }`                     |
 | GET    | `/api/auth/me`       | —                        | `{ user_id, username }` or `null` |
 
-### Todo endpoints (all require authentication)
+### Deck endpoints
 
-| Method | Endpoint              | Request Body      | Response                                     |
-| ------ | --------------------- | ----------------- | -------------------------------------------- |
-| GET    | `/api/todos`          | —                 | `[{ todo_id, title, is_complete, user_id }]` |
-| POST   | `/api/todos`          | `{ title }`       | `{ todo_id, title, is_complete, user_id }`   |
-| PATCH  | `/api/todos/:todo_id` | `{ is_complete }` | `{ todo_id, title, is_complete, user_id }`   |
-| DELETE | `/api/todos/:todo_id` | —                 | `{ todo_id, title, is_complete, user_id }`   |
+| Method | Endpoint         | Request Body                        | Response                                   |
+| ------ | ---------------- | ----------------------------------- | ------------------------------------------ |
+| GET    | `/api/decks`     | —                                   | `[{ deck_id, title, is_public, user_id }]` |
+| GET    | `/api/decks/me`  | —                                   | `[{ deck_id, title, is_public, user_id }]` |
+| POST   | `/api/decks`     | `{ title, description, is_public }` | `{ deck_id, title, is_public, user_id }`   |
+| PUT    | `/api/decks/:id` | `{ title, description, is_public }` | `{ deck_id, title, is_public, user_id }`   |
+| DELETE | `/api/decks/:id` | —                                   | `{ message }`                              |
+
+### Card endpoints (all require owner authentication)
+
+| Method | Endpoint               | Request Body      | Response                       |
+| ------ | ---------------------- | ----------------- | ------------------------------ |
+| GET    | `/api/decks/:id/cards` | —                 | `[{ card_id, front, back }]`   |
+| POST   | `/api/decks/:id/cards` | `{ front, back }` | `{ card_id, front, back }`     |
+| PATCH  | `/api/cards/:card_id`  | `{ front, back }` | `{ card_id, front, back }`     |
+| DELETE | `/api/cards/:card_id`  | —                 | `{ message }`                  |
+
+
+
+
 
 ## Setup
 
@@ -62,7 +85,7 @@ A user has many todos. Deleting a user cascades to delete all of their todos.
 Create a local Postgres database:
 
 ```sh
-createdb todos_casestudy
+createdb flashcards_db
 ```
 
 ### 2. Server

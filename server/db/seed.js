@@ -3,6 +3,13 @@ const pool = require('./pool');
 
 const SALT_ROUNDS = 8;
 
+/* 
+In this seed file, since the users are no longer going to owning todos, but decks of flashcards instead, I will need to completely change the different tables that we have here.
+For now, the users table can stay the same. However, i need to delete the todos table and replace it with a deck table that references a specific user. This is so that a user can
+can create and own a deck. I will also create another cards table which will reference a specific deck. Each user can create many decks, and each deck will have many cards within them. 
+*/
+
+
 const seed = async () => {
   // Drop tables in reverse dependency order (todos references users via FK)
   await pool.query('DROP TABLE IF EXISTS todos');
