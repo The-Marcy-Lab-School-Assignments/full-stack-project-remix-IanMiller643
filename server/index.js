@@ -46,7 +46,6 @@ app.delete('/api/decks/:id', checkAuthentication, deckControllers.deleteDeck);
 // Card routes (All require authentication)
 // ====================================
 
-// List cards for a specific deck (Ownership/Public check is inside the controller)
 app.get('/api/decks/:deck_id/cards', checkAuthentication, cardControllers.listCards);
 app.post('/api/decks/:deck_id/cards', checkAuthentication, cardControllers.createCard);
 app.patch('/api/cards/:card_id', checkAuthentication, cardControllers.updateCard);

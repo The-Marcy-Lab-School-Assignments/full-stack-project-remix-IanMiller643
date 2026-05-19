@@ -36,13 +36,11 @@ const seed = async () => {
     )
   `);
 
-  // Hash passwords in parallel
   const [aliceHash, bobHash] = await Promise.all([
     bcrypt.hash('password123', SALT_ROUNDS),
     bcrypt.hash('password123', SALT_ROUNDS),
   ]);
 
-  // Insert users and capture IDs
   const { rows: users } = await pool.query(`
     INSERT INTO users (username, password_hash) VALUES
       ('alice', $1),
@@ -52,7 +50,6 @@ const seed = async () => {
 
   const [alice, bob] = users;
 
-  // Insert decks and capture IDs
   const { rows: decks } = await pool.query(`
     INSERT INTO decks (title, description, is_public, user_id) VALUES
       ('JavaScript Basics', 'Fundamentals of JS', TRUE,  $1),
@@ -63,7 +60,6 @@ const seed = async () => {
 
   const [jsDeck, privateDeck, sqlDeck] = decks;
 
-  // Insert cards into the specific decks using the returned IDs
   await pool.query(`
     INSERT INTO cards (front, back, deck_id) VALUES
       ('What is a Closure?', 'A function with its lexical environment.', $1),
