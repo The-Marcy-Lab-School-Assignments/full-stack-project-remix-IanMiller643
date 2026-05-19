@@ -6,7 +6,8 @@ require('dotenv').config();
 const logRoutes = require('./middleware/logRoutes');
 const checkAuthentication = require('./middleware/checkAuthentication');
 const authControllers = require('./controllers/authControllers');
-const todoControllers = require('./controllers/todoControllers');
+const deckControllers = require('./controllers/deckControllers');
+const cardControllers = require('./controllers/cardControllers');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -19,9 +20,7 @@ app.use(logRoutes);
 app.use(cookieSession({ name: 'session', secret: process.env.SESSION_SECRET }));
 app.use(express.json());
 
-// In production, serve the built React app from frontend/dist.
-// In development, Vite's dev server handles the frontend on a separate port
-// and proxies /api requests to this server.
+// Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
 // ====================================
@@ -34,13 +33,24 @@ app.get('/api/auth/me', authControllers.getMe);
 app.delete('/api/auth/logout', authControllers.logout);
 
 // ====================================
-// Todo routes (all require authentication)
+// Deck routes
 // ====================================
 
-app.get('/api/todos', checkAuthentication, todoControllers.listTodos);
-app.post('/api/todos', checkAuthentication, todoControllers.createTodo);
-app.patch('/api/todos/:todo_id', checkAuthentication, todoControllers.updateTodo);
-app.delete('/api/todos/:todo_id', checkAuthentication, todoControllers.deleteTodo);
+app.get('/api/decks', deckControllers.listPublicDecks);
+app.get('/api/decks/me', checkAuthentication, deckControllers.listMyDecks);
+app.post('/api/decks', checkAuthentication, deckControllers.createDeck);
+app.put('/api/decks/:id', checkAuthentication, deckControllers.updateDeck);
+app.delete('/api/decks/:id', checkAuthentication, deckControllers.deleteDeck);
+
+// ====================================
+// Card routes (All require authentication)
+// ====================================
+
+// List cards for a specific deck (Ownership/Public check is inside the controller)
+app.get('/api/decks/:deck_id/cards', checkAuthentication, cardControllers.listCards);
+app.post('/api/decks/:deck_id/cards', checkAuthentication, cardControllers.createCard);
+app.patch('/api/cards/:card_id', checkAuthentication, cardControllers.updateCard);
+app.delete('/api/cards/:card_id', checkAuthentication, cardControllers.deleteCard);
 
 // ====================================
 // Global Error Handler

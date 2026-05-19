@@ -3,16 +3,10 @@ const pool = require('./pool');
 
 const SALT_ROUNDS = 8;
 
-/* 
-In this seed file, since the users are no longer going to owning todos, but decks of flashcards instead, I will need to completely change the different tables that we have here.
-For now, the users table can stay the same. However, i need to delete the todos table and replace it with a deck table that references a specific user. This is so that a user can
-can create and own a deck. I will also create another cards table which will reference a specific deck. Each user can create many decks, and each deck will have many cards within them. 
-*/
-
-
 const seed = async () => {
-  // Drop tables in reverse dependency order (todos references users via FK)
-  await pool.query('DROP TABLE IF EXISTS todos');
+  // Drop tables in reverse dependency order
+  await pool.query('DROP TABLE IF EXISTS cards');
+  await pool.query('DROP TABLE IF EXISTS decks');
   await pool.query('DROP TABLE IF EXISTS users');
 
   await pool.query(`
@@ -24,21 +18,31 @@ const seed = async () => {
   `);
 
   await pool.query(`
-    CREATE TABLE todos (
-      todo_id     SERIAL PRIMARY KEY,
+    CREATE TABLE decks (
+      deck_id     SERIAL PRIMARY KEY,
       title       TEXT NOT NULL,
-      is_complete BOOLEAN NOT NULL DEFAULT FALSE,
-      user_id     INT REFERENCES users(user_id) ON DELETE CASCADE
+      description TEXT,
+      is_public   BOOLEAN DEFAULT FALSE,
+      user_id     INTEGER REFERENCES users(user_id) ON DELETE CASCADE
     )
   `);
 
-  // Hash passwords in parallel — bcrypt is slow by design (CPU-bound hashing)
+  await pool.query(`
+    CREATE TABLE cards (
+      card_id     SERIAL PRIMARY KEY,
+      front       TEXT NOT NULL,
+      back        TEXT NOT NULL,
+      deck_id     INTEGER REFERENCES decks(deck_id) ON DELETE CASCADE
+    )
+  `);
+
+  // Hash passwords in parallel
   const [aliceHash, bobHash] = await Promise.all([
     bcrypt.hash('password123', SALT_ROUNDS),
     bcrypt.hash('password123', SALT_ROUNDS),
   ]);
 
-  // RETURNING captures inserted user_ids so we don't hardcode them
+  // Insert users and capture IDs
   const { rows: users } = await pool.query(`
     INSERT INTO users (username, password_hash) VALUES
       ('alice', $1),
@@ -48,15 +52,26 @@ const seed = async () => {
 
   const [alice, bob] = users;
 
-  await pool.query(`
-    INSERT INTO todos (title, is_complete, user_id) VALUES
-      ('Buy groceries',        FALSE, $1),
-      ('Walk the dog',         FALSE, $1),
-      ('Read a book',          TRUE,  $1),
-      ('Set up the database',  TRUE,  $2),
-      ('Build the API',        TRUE,  $2),
-      ('Build the frontend',   FALSE, $2)
+  // Insert decks and capture IDs
+  const { rows: decks } = await pool.query(`
+    INSERT INTO decks (title, description, is_public, user_id) VALUES
+      ('JavaScript Basics', 'Fundamentals of JS', TRUE,  $1),
+      ('Private Notes',     'Secret study tips',  FALSE, $1),
+      ('PostgreSQL',        'Database commands',  TRUE,  $2)
+    RETURNING deck_id, title
   `, [alice.user_id, bob.user_id]);
+
+  const [jsDeck, privateDeck, sqlDeck] = decks;
+
+  // Insert cards into the specific decks using the returned IDs
+  await pool.query(`
+    INSERT INTO cards (front, back, deck_id) VALUES
+      ('What is a Closure?', 'A function with its lexical environment.', $1),
+      ('Map vs ForEach',     'Map returns an array, ForEach does not.',  $1),
+      ('Top Secret',         'Do not share this card.',                  $2),
+      ('SELECT',             'Used to fetch data from a database.',      $3),
+      ('SERIAL',             'Auto-incrementing integer in Postgres.',   $3)
+  `, [jsDeck.deck_id, privateDeck.deck_id, sqlDeck.deck_id]);
 
   return users;
 };

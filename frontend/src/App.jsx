@@ -38,7 +38,7 @@ function App() {
 
   return (
     <main>
-      <h1>Todo App</h1>
+      <h1>Flashcard App</h1>
       {currentUser
         ? <TodoPage currentUser={currentUser} handleLogout={handleLogout} />
         : <AuthPage handleLogin={handleLogin} handleRegister={handleRegister} />
