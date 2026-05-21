@@ -1,0 +1,103 @@
+/* Center the card on the screen */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+/* The white card container */
+.auth-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-form h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #1a202c;
+}
+
+/* Input field styling */
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    /* Ensures padding doesn't break width */
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #3182ce;
+}
+
+/* Action Buttons */
+.auth-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #3182ce;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+.auth-btn:hover {
+    background-color: #2b6cb0;
+}
+
+/* Green variation for Register */
+.auth-btn.register {
+    background-color: #38a169;
+}
+
+.auth-btn.register:hover {
+    background-color: #2f855a;
+}
+
+/* Error messages */
+.error-text {
+    color: #e53e3e;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Toggle section at the bottom */
+.auth-toggle {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #718096;
+}
+
+.toggle-link {
+    background: none;
+    border: none;
+    color: #3182ce;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.toggle-link:hover {
+    color: #2b6cb0;
+}

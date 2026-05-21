@@ -1,0 +1,51 @@
+.study-container {
+    max-width: 500px;
+    margin: 40px auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.study-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.study-header a {
+    text-decoration: none;
+    color: #4a5568;
+}
+
+.flashcard-focus {
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.study-controls {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.control-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #cbd5e0;
+    background: white;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.control-btn:hover {
+    background: #edf2f7;
+}
+
+.study-empty {
+    text-align: center;
+    margin-top: 100px;
+}

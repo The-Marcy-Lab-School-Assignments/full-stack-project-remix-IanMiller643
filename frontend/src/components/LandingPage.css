@@ -1,0 +1,100 @@
+/* Container padding and centering */
+.landing-container {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header styling */
+.landing-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.landing-header h1 {
+    font-size: 2.5rem;
+    color: #2d3748;
+}
+
+.landing-header p {
+    font-size: 1.1rem;
+    color: #718096;
+}
+
+/* The Grid System */
+.deck-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+/* Individual Card Styling */
+.deck-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.deck-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.deck-title {
+    margin: 0 0 8px 0;
+    color: #1a202c;
+    font-size: 1.25rem;
+}
+
+.deck-description {
+    color: #4a5568;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+/* Creator Attribution Section */
+.attribution-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #f7fafc;
+}
+
+.attribution-label {
+    font-size: 0.85rem;
+    color: #a0aec0;
+}
+
+.username-badge {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4a5568;
+    background-color: #edf2f7;
+    padding: 2px 8px;
+    borderRadius: 12px;
+}
+
+/* Action Button */
+.study-button {
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+    background-color: #3182ce;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.study-button:hover {
+    background-color: #2b6cb0;
+}

@@ -9,7 +9,7 @@ module.exports.listByUser = async (user_id) => {
 
 // Returns all decks marked as public
 module.exports.listPublic = async () => {
-  const query = 'SELECT * FROM decks WHERE is_public = TRUE ORDER BY deck_id DESC';
+  const query = 'SELECT decks.*, users.username AS username FROM decks INNER JOIN users ON decks.user_id = users.user_id WHERE decks.is_public = TRUE ORDER BY deck_id DESC';
   const { rows } = await pool.query(query);
   return rows;
 };
