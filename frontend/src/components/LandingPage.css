@@ -21,10 +21,9 @@
     color: #718096;
 }
 
-/* The Grid System */
 .deck-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 25px;
 }
 
@@ -97,4 +96,12 @@
 
 .study-button:hover {
     background-color: #2b6cb0;
+}
+
+
+@media (max-width: 600px) {
+    .deck-grid {
+        grid-template-columns: 1fr;
+        /* 1 column on phones */
+    }
 }
