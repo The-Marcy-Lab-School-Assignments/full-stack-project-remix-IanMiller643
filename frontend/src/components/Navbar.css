@@ -2,59 +2,67 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 2rem;
-    background-color: #ffffff;
-    border-bottom: 1px solid #e2e8f0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    padding: 1.1rem 2rem;
+    background-color: var(--paper);
+    border-bottom: 1px solid var(--fog);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
-.nav-logo h3 {
-    margin: 0;
-    color: #3182ce;
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
 }
 
-.nav-logo {
-    text-decoration: none;
+.nav-logo h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.nav-logo .flip-mark {
+    width: 12px;
+    height: 12px;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
 }
 
 /* Base style for all links in the navbar */
 .nav-link {
     text-decoration: none;
-    color: #4a5568;
+    color: var(--ink-soft);
     font-weight: 500;
     font-size: 0.95rem;
     transition: color 0.2s;
 }
 
 .nav-link:hover {
-    color: #3182ce;
+    color: var(--ember);
 }
 
 .user-welcome {
-    color: #718096;
-    font-size: 0.9rem;
+    font-family: var(--font-mono);
+    color: var(--ink-soft);
+    font-size: 0.8rem;
     margin-right: 10px;
 }
 
 /* Special button styling for Logout */
 .btn-logout {
     background-color: transparent;
-    color: #e53e3e;
-    border: 1px solid #feb2b2;
-    padding: 6px 12px;
-    border-radius: 6px;
+    color: var(--ink-soft);
+    border: 1px solid var(--fog-strong);
+    padding: 6px 14px;
+    border-radius: 999px;
     font-weight: 600;
     font-size: 0.85rem;
     cursor: pointer;
@@ -62,19 +70,20 @@
 }
 
 .btn-logout:hover {
-    background-color: #fff5f5;
-    border-color: #e53e3e;
+    background-color: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
 }
 
 /* Styling for the Login Link to make it look like a button */
 .nav-link-auth {
-    background-color: #3182ce;
+    background-color: var(--ember);
     color: white !important;
-    padding: 8px 16px;
-    border-radius: 6px;
+    padding: 8px 18px;
+    border-radius: 999px;
     transition: background-color 0.2s;
 }
 
 .nav-link-auth:hover {
-    background-color: #2b6cb0;
+    background-color: var(--ember-dark);
 }

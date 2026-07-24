@@ -7,12 +7,13 @@
     padding: 20px;
 }
 
-/* The white card container */
+/* The card container */
 .auth-card {
-    background: white;
+    background: var(--card);
     padding: 2.5rem;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 18px;
+    border: 1px solid var(--fog);
+    box-shadow: 0 24px 48px -24px rgba(23, 22, 15, 0.25);
     width: 100%;
     max-width: 400px;
 }
@@ -20,7 +21,7 @@
 .auth-form h2 {
     margin-bottom: 1.5rem;
     text-align: center;
-    color: #1a202c;
+    color: var(--ink);
 }
 
 /* Input field styling */
@@ -31,9 +32,11 @@
 .input-group input {
     width: 100%;
     padding: 12px;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
+    border: 1px solid var(--fog-strong);
+    border-radius: 8px;
     font-size: 1rem;
+    font-family: var(--font-body);
+    background: var(--paper);
     box-sizing: border-box;
     /* Ensures padding doesn't break width */
     transition: border-color 0.2s;
@@ -41,17 +44,18 @@
 
 .input-group input:focus {
     outline: none;
-    border-color: #3182ce;
+    border-color: var(--ember);
+    box-shadow: 0 0 0 3px rgba(255, 78, 50, 0.12);
 }
 
 /* Action Buttons */
 .auth-btn {
     width: 100%;
     padding: 12px;
-    background-color: #3182ce;
+    background-color: var(--ember);
     color: white;
     border: none;
-    border-radius: 6px;
+    border-radius: 999px;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
@@ -60,21 +64,21 @@
 }
 
 .auth-btn:hover {
-    background-color: #2b6cb0;
+    background-color: var(--ember-dark);
 }
 
-/* Green variation for Register */
+/* Ink variation for Register — distinguishes it without a second brand color */
 .auth-btn.register {
-    background-color: #38a169;
+    background-color: var(--ink);
 }
 
 .auth-btn.register:hover {
-    background-color: #2f855a;
+    background-color: #000000;
 }
 
 /* Error messages */
 .error-text {
-    color: #e53e3e;
+    color: var(--ember-dark);
     font-size: 0.875rem;
     margin-bottom: 1rem;
     text-align: center;
@@ -85,13 +89,13 @@
     margin-top: 1.5rem;
     text-align: center;
     font-size: 0.9rem;
-    color: #718096;
+    color: var(--ink-soft);
 }
 
 .toggle-link {
     background: none;
     border: none;
-    color: #3182ce;
+    color: var(--ember);
     text-decoration: underline;
     cursor: pointer;
     font-weight: bold;
@@ -99,5 +103,5 @@
 }
 
 .toggle-link:hover {
-    color: #2b6cb0;
+    color: var(--ember-dark);
 }

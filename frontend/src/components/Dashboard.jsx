@@ -39,6 +39,7 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
+            <span className="mark-label">Your library</span>
             <h1>My Decks</h1>
 
             <section className="create-deck-section">

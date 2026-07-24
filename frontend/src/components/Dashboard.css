@@ -1,22 +1,26 @@
 .dashboard-container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 40px 20px;
+}
+
+.dashboard-container h1 {
+    margin-bottom: 8px;
 }
 
 /* Creation Form Styling */
 .create-deck-section {
-    background-color: #f8fafc;
-    padding: 24px;
-    border-radius: 12px;
-    margin-bottom: 40px;
-    border: 1px solid #e2e8f0;
+    background-color: var(--card);
+    padding: 28px;
+    border-radius: 14px;
+    margin: 24px 0 40px;
+    border: 1px solid var(--fog);
 }
 
 .create-deck-section h3 {
     margin-top: 0;
-    color: #1e293b;
+    font-family: var(--font-display);
+    color: var(--ink);
     margin-bottom: 16px;
 }
 
@@ -26,17 +30,19 @@
     width: 100%;
     margin-bottom: 12px;
     padding: 12px;
-    border: 1px solid #cbd5e0;
-    border-radius: 6px;
+    border: 1px solid var(--fog-strong);
+    border-radius: 8px;
     box-sizing: border-box;
     font-size: 1rem;
+    font-family: var(--font-body);
+    background: var(--paper);
 }
 
 .deck-input:focus,
 .deck-textarea:focus {
     outline: none;
-    border-color: #3182ce;
-    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
+    border-color: var(--ember);
+    box-shadow: 0 0 0 3px rgba(255, 78, 50, 0.12);
 }
 
 .deck-textarea {
@@ -50,7 +56,7 @@
     margin-bottom: 20px;
     cursor: pointer;
     font-size: 0.95rem;
-    color: #4a5568;
+    color: var(--ink-soft);
 }
 
 .privacy-label input {
@@ -61,71 +67,72 @@
 
 /* Buttons */
 .btn-primary {
-    background-color: #3182ce;
+    background-color: var(--ember);
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 6px;
+    padding: 12px 26px;
+    border-radius: 999px;
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s;
 }
 
 .btn-primary:hover {
-    background-color: #2b6cb0;
+    background-color: var(--ember-dark);
 }
 
 /* Deck List Item Styling */
 .deck-item {
-    border: 1px solid #e2e8f0;
-    padding: 24px;
-    border-radius: 12px;
+    border: 1px solid var(--fog);
+    padding: 26px;
+    border-radius: 14px;
     margin-bottom: 16px;
-    background-color: #f8fafc;
+    background-color: var(--card);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.1s, border-color 0.2s;
+    transition: transform 0.15s, border-color 0.2s;
 }
 
 .deck-item:hover {
-    border-color: #3182ce;
+    border-color: var(--ember);
     transform: translateY(-2px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .deck-info h3 {
     margin: 0 0 8px 0;
-    color: #1a202c;
+    font-family: var(--font-display);
+    color: var(--ink);
     font-size: 1.25rem;
 }
 
 .deck-description {
-    color: #64748b;
+    color: var(--ink-soft);
     font-size: 0.95rem;
     margin: 0 0 14px 0;
 }
 
 /* Status Badges */
 .status-badge {
+    font-family: var(--font-mono);
     font-size: 0.7rem;
     padding: 4px 10px;
     border-radius: 20px;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.025em;
+    letter-spacing: 0.05em;
 }
 
 .status-public {
-    background-color: #f0fff4;
-    color: #2f855a;
-    border: 1px solid #c6f6d5;
+    background-color: var(--pine-soft);
+    color: var(--pine);
+    border: 1px solid var(--pine);
 }
 
 .status-private {
-    background-color: #f7fafc;
-    color: #4a5568;
-    border: 1px solid #e2e8f0;
+    background-color: var(--paper);
+    color: var(--ink-soft);
+    border: 1px solid var(--fog-strong);
 }
 
 /* Button Group */
@@ -136,7 +143,7 @@
 
 .btn-action {
     padding: 8px 16px;
-    border-radius: 6px;
+    border-radius: 999px;
     font-weight: 600;
     cursor: pointer;
     font-size: 0.875rem;
@@ -145,33 +152,33 @@
 }
 
 .btn-study {
-    background-color: #48bb78;
+    background-color: var(--pine);
     color: white;
 }
 
 .btn-study:hover {
-    background-color: #38a169;
+    background-color: #234133;
 }
 
 .btn-manage {
-    background-color: white;
-    color: #4a5568;
-    border-color: #cbd5e0;
+    background-color: var(--card);
+    color: var(--ink-soft);
+    border-color: var(--fog-strong);
 }
 
 .btn-manage:hover {
-    background-color: #f7fafc;
-    border-color: #a0aec0;
+    background-color: var(--paper);
+    border-color: var(--ink-soft);
 }
 
 .btn-delete {
-    background-color: #fff5f5;
-    color: #e53e3e;
-    border-color: #feb2b2;
+    background-color: var(--card);
+    color: var(--ember-dark);
+    border-color: var(--ember);
 }
 
 .btn-delete:hover {
-    background-color: #e53e3e;
+    background-color: var(--ember);
     color: white;
 }
 

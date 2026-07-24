@@ -14,6 +14,7 @@ const Navbar = ({ user, setUser }) => {
     return (
         <nav className="navbar">
             <Link to="/" className="nav-logo">
+                <span className="flip-mark" aria-hidden="true"></span>
                 <h3>Build-A-Deck</h3>
             </Link>
 
