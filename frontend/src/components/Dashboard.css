@@ -1,0 +1,197 @@
+.dashboard-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.dashboard-container h1 {
+    margin-bottom: 8px;
+}
+
+/* Creation Form Styling */
+.create-deck-section {
+    background-color: var(--card);
+    padding: 28px;
+    border-radius: 14px;
+    margin: 24px 0 40px;
+    border: 1px solid var(--fog);
+}
+
+.create-deck-section h3 {
+    margin-top: 0;
+    font-family: var(--font-display);
+    color: var(--ink);
+    margin-bottom: 16px;
+}
+
+.deck-input,
+.deck-textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 12px;
+    border: 1px solid var(--fog-strong);
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: var(--font-body);
+    background: var(--paper);
+}
+
+.deck-input:focus,
+.deck-textarea:focus {
+    outline: none;
+    border-color: var(--ember);
+    box-shadow: 0 0 0 3px rgba(255, 78, 50, 0.12);
+}
+
+.deck-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.privacy-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+}
+
+.privacy-label input {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--ember);
+    color: white;
+    border: none;
+    padding: 12px 26px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: var(--ember-dark);
+}
+
+/* Deck List Item Styling */
+.deck-item {
+    border: 1px solid var(--fog);
+    padding: 26px;
+    border-radius: 14px;
+    margin-bottom: 16px;
+    background-color: var(--card);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.15s, border-color 0.2s;
+}
+
+.deck-item:hover {
+    border-color: var(--ember);
+    transform: translateY(-2px);
+}
+
+.deck-info h3 {
+    margin: 0 0 8px 0;
+    font-family: var(--font-display);
+    color: var(--ink);
+    font-size: 1.25rem;
+}
+
+.deck-description {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    margin: 0 0 14px 0;
+}
+
+/* Status Badges */
+.status-badge {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-public {
+    background-color: var(--pine-soft);
+    color: var(--pine);
+    border: 1px solid var(--pine);
+}
+
+.status-private {
+    background-color: var(--paper);
+    color: var(--ink-soft);
+    border: 1px solid var(--fog-strong);
+}
+
+/* Button Group */
+.deck-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-action {
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.875rem;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+}
+
+.btn-study {
+    background-color: var(--pine);
+    color: white;
+}
+
+.btn-study:hover {
+    background-color: #234133;
+}
+
+.btn-manage {
+    background-color: var(--card);
+    color: var(--ink-soft);
+    border-color: var(--fog-strong);
+}
+
+.btn-manage:hover {
+    background-color: var(--paper);
+    border-color: var(--ink-soft);
+}
+
+.btn-delete {
+    background-color: var(--card);
+    color: var(--ember-dark);
+    border-color: var(--ember);
+}
+
+.btn-delete:hover {
+    background-color: var(--ember);
+    color: white;
+}
+
+/* Responsive adjustment */
+@media (max-width: 600px) {
+    .deck-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .deck-actions {
+        margin-top: 20px;
+        width: 100%;
+        justify-content: space-between;
+    }
+}

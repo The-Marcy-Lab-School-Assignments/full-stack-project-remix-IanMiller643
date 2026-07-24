@@ -30,6 +30,8 @@ app.use(express.static(path.join(__dirname, '../frontend/dist')));
 app.post('/api/auth/register', authControllers.register);
 app.post('/api/auth/login', authControllers.login);
 app.get('/api/auth/me', authControllers.getMe);
+app.patch('/api/auth/me', checkAuthentication, authControllers.updateUsername);
+app.delete('/api/auth/me', checkAuthentication, authControllers.deleteAccount);
 app.delete('/api/auth/logout', authControllers.logout);
 
 // ====================================
@@ -50,6 +52,14 @@ app.get('/api/decks/:deck_id/cards', checkAuthentication, cardControllers.listCa
 app.post('/api/decks/:deck_id/cards', checkAuthentication, cardControllers.createCard);
 app.patch('/api/cards/:card_id', checkAuthentication, cardControllers.updateCard);
 app.delete('/api/cards/:card_id', checkAuthentication, cardControllers.deleteCard);
+
+// ====================================
+// SPA fallback — let React Router handle any non-API GET route
+// ====================================
+
+app.get(/^(?!\/api).*/, (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
 
 // ====================================
 // Global Error Handler

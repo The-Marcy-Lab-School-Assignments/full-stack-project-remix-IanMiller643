@@ -1,0 +1,89 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 2rem;
+    background-color: var(--paper);
+    border-bottom: 1px solid var(--fog);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.nav-logo h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.nav-logo .flip-mark {
+    width: 12px;
+    height: 12px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Base style for all links in the navbar */
+.nav-link {
+    text-decoration: none;
+    color: var(--ink-soft);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--ember);
+}
+
+.user-welcome {
+    font-family: var(--font-mono);
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+    margin-right: 10px;
+}
+
+/* Special button styling for Logout */
+.btn-logout {
+    background-color: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--fog-strong);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+}
+
+/* Styling for the Login Link to make it look like a button */
+.nav-link-auth {
+    background-color: var(--ember);
+    color: white !important;
+    padding: 8px 18px;
+    border-radius: 999px;
+    transition: background-color 0.2s;
+}
+
+.nav-link-auth:hover {
+    background-color: var(--ember-dark);
+}
