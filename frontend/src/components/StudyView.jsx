@@ -38,7 +38,7 @@ const StudyView = () => {
             </header>
 
             <main className="flashcard-focus">
-                <Flashcard card={cards[currentIndex]} />
+                <Flashcard key={cards[currentIndex].card_id} card={cards[currentIndex]} />
             </main>
 
             <footer className="study-controls">
