@@ -54,6 +54,14 @@ app.patch('/api/cards/:card_id', checkAuthentication, cardControllers.updateCard
 app.delete('/api/cards/:card_id', checkAuthentication, cardControllers.deleteCard);
 
 // ====================================
+// SPA fallback — let React Router handle any non-API GET route
+// ====================================
+
+app.get(/^(?!\/api).*/, (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+});
+
+// ====================================
 // Global Error Handler
 // ====================================
 
