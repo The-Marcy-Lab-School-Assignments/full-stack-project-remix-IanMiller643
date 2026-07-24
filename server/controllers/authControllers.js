@@ -49,3 +49,32 @@ module.exports.logout = (req, res) => {
   req.session = null;
   res.send({ message: 'Logged out.' });
 };
+
+module.exports.updateUsername = async (req, res, next) => {
+  try {
+    const { username } = req.body;
+    if (!username) {
+      return res.status(400).send({ error: 'Username is required.' });
+    }
+
+    const existingUser = await userModel.findByUsername(username);
+    if (existingUser && existingUser.user_id !== req.session.user_id) {
+      return res.status(400).send({ error: 'Username already taken.' });
+    }
+
+    const user = await userModel.updateUsername(req.session.user_id, username);
+    res.send(user);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports.deleteAccount = async (req, res, next) => {
+  try {
+    await userModel.deleteUser(req.session.user_id);
+    req.session = null;
+    res.send({ message: 'Account deleted.' });
+  } catch (err) {
+    next(err);
+  }
+};

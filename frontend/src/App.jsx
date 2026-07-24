@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard';
 import StudyView from './components/StudyView';
 import LandingPage from './components/LandingPage';
 import DeckEditor from './components/DeckEditor';
+import ProfilePage from './components/ProfilePage';
 
 
 function App() {
@@ -93,6 +94,16 @@ function App() {
             element={
               currentUser
                 ? <StudyView />
+                : <Navigate to="/auth" />
+            }
+          />
+
+          {/* Protected Route: Change username or delete account */}
+          <Route
+            path="/profile"
+            element={
+              currentUser
+                ? <ProfilePage currentUser={currentUser} setCurrentUser={setCurrentUser} />
                 : <Navigate to="/auth" />
             }
           />

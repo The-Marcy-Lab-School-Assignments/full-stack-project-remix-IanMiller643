@@ -36,3 +36,15 @@ module.exports.validatePassword = async (username, password) => {
   if (!isValid) return null;
   return { user_id: user.user_id, username: user.username };
 };
+
+// Updates a user's username. Returns { user_id, username }.
+module.exports.updateUsername = async (user_id, username) => {
+  const query = 'UPDATE users SET username = $1 WHERE user_id = $2 RETURNING user_id, username';
+  const { rows } = await pool.query(query, [username, user_id]);
+  return rows[0];
+};
+
+// Deletes a user. Cascades to their decks and cards.
+module.exports.deleteUser = async (user_id) => {
+  await pool.query('DELETE FROM users WHERE user_id = $1', [user_id]);
+};

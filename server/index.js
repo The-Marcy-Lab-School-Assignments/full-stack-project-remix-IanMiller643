@@ -30,6 +30,8 @@ app.use(express.static(path.join(__dirname, '../frontend/dist')));
 app.post('/api/auth/register', authControllers.register);
 app.post('/api/auth/login', authControllers.login);
 app.get('/api/auth/me', authControllers.getMe);
+app.patch('/api/auth/me', checkAuthentication, authControllers.updateUsername);
+app.delete('/api/auth/me', checkAuthentication, authControllers.deleteAccount);
 app.delete('/api/auth/logout', authControllers.logout);
 
 // ====================================

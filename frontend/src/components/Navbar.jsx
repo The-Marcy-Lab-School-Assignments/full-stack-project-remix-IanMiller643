@@ -23,6 +23,7 @@ const Navbar = ({ user, setUser }) => {
                     <>
                         <span className="user-welcome">Welcome, {user.username}!</span>
                         <Link to="/dashboard" className="nav-link">My Decks</Link>
+                        <Link to="/profile" className="nav-link">Profile</Link>
                         <button onClick={handleLogout} className="btn-logout">
                             Logout
                         </button>
